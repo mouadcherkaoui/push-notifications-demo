@@ -1,0 +1,22 @@
+{
+  "name": "push-notifications-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "push.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mouadcherkaoui/push-notifications-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mouadcherkaoui/push-notifications-demo/issues"
+  },
+  "homepage": "https://github.com/mouadcherkaoui/push-notifications-demo#readme",
+  "dependencies": {
+    "web-push": "^3.4.4"
+  }
+}
