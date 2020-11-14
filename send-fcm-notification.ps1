@@ -2,11 +2,21 @@
 $headers=New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 
 $headers.Add('Content-Type', 'application/json')
-$headers.Add('Authorization', 'key=private key from firebase console')
+$headers.Add('Authorization', '*****')
 
 $data= @"
- { "data": {"title": "from powershell", "content":"test"}, "to":"dFaEawjzUBkMuTS7XC03-g:APA91bEZaZbPruOGHyE5JyHwzEakkufe6V2HqGjkrmf_P6fw7tQGM8My-JHZX9b8gmSfmE_PUJp8hMc-8vvJU9drzznlCZg7GGXAfeTSHMKT-SpV1BsBc9yOBLwnzKGQDclPTlcqMTxS"}
+ { 
+    "data": {
+        "title": "from powershell", 
+        "content":"test"
+    }, 
+    "body": {
+        "title": "from powershell", 
+        "content":"test"
+    }, 
+    "to":"djw-GhtDnk3BM2bwryUYAf:APA91bH6XschFFEHM0GBwbVMcHCWJ4vuurWCGAJEAJR9r9wTW_BeDoUUwCdKZFtNYVy75l5OoVpEkO-_VRrA3z18HALmTOjw2LqBQJjt7Pi2XzsfP02tGbwO8FqFayJwi1k-18w_F1r2"
+}
 "@
 
 
-Invoke-RestMethod -Method Post -Uri 'https://fcm.googleapis.com/fcm/send' -Headers $headers -Body $data -SkipHeadersValidation
+Invoke-RestMethod -Method Post -Uri 'https://fcm.googleapis.com/fcm/send' -Headers $headers -Body $data -SkipHeaderValidation
