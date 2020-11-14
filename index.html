@@ -65,7 +65,7 @@
         }
 
         async function sendTokenToServer(token) {
-            if(!isTokenSentToServer) {
+            if(!isTokenSentToServer()) {
                 $.ajax({
                     url: '',
                     type: 'POST',
@@ -83,7 +83,7 @@
             }
         }
 
-        function isTokensendTokenToServer() {
+        function isTokenSentToServer() {
             return window.localStorage.getItem('sendTokenToServer') === '1';
         }
 
