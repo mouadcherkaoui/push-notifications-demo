@@ -71,6 +71,7 @@
                 const result = await firestore.collection('tokens').add({ token: token});
                 console.log(result);
                 setTokenSentToServer(true);
+            }
             //     $.ajax({
             //         url: '',
             //         type: 'POST',
