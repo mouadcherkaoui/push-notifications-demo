@@ -32,10 +32,11 @@
         const firestore = firebase.firestore();
 
         getStartToken()
-            .then(() => {
+            .then((token) => {
                 messaging.onMessage(function(payload){
                     console.log("onMessage", payload);
                 });
+                console.log(token);
             })
             .catch(err => console.log(err));
 
@@ -45,6 +46,7 @@
                 const token = await messaging.getToken();
                 if(token){
                     sendTokenToServer(token);
+                    return token;
                 }else {
                     await RequestPermission();
                     setTokenSentToServer(false);
@@ -52,7 +54,7 @@
             }catch(error) {
                 setTokenSentToServer(false);
                 console.log(error);
-            }
+            }            
         }
 
         async function RequestPermission() {
