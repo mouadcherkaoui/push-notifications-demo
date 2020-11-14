@@ -31,11 +31,13 @@
         const messaging = firebase.messaging();
         const firestore = firebase.firestore();
 
-        getStartToken().then(() => {
-            messaging.onMessage(function(payload){
-                console.log("onMessage", payload);
-            });
-        });
+        getStartToken()
+            .then(() => {
+                messaging.onMessage(function(payload){
+                    console.log("onMessage", payload);
+                });
+            })
+            .catch(err => console.log(err));
 
 
         async function getStartToken(){
