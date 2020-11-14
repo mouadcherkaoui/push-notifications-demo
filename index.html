@@ -86,16 +86,16 @@
         function isTokensendTokenToServer() {
             return window.localStorage.getItem('sendTokenToServer') === '1';
         }
-        
+
         function setTokenSentToServer(sent) {
             window.localStorage.setItem('sendTokenToServer', sent ? '1' : '0');
         }
     </script>
     <script>
-        addEventListener('load', async () =>{
-            let serviceWorker = await navigator.serviceWorker.register('service-worker.js');
-            console.log(serviceWorker);
-        });
+        // addEventListener('load', async () =>{
+        //     let serviceWorker = await navigator.serviceWorker.register('service-worker.js');
+        //     console.log(serviceWorker);
+        // });
 
         async function subscribe(){
             let serviceWorker = await navigator.serviceWorker.ready;
