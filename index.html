@@ -123,7 +123,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <!-- 
   Copyright IBM Corp. 2016, 2018
 
@@ -169,8 +168,6 @@
         <span tabindex="0"></span>
     </div>
 
-=======
->>>>>>> 2b03242add5a1cc350864c0d65b60342042534d8
     <script src="https://unpkg.com/mustache@latest"></script>
     <button onclick="subscribe()">Subscribe</button>
 
@@ -416,8 +413,8 @@
         }
 
         function renderTokenItems() {
-            var template = document.getElementById('subscription-item').innerHTML;
-            var rendered = Mustache.render(template, {
+            var template = Handlebars.compile(document.getElementById('subscription-item').innerHTML);
+            var rendered = template({
                 tokens: _tokens
             });
             document.getElementById('target').innerHTML = rendered;
@@ -441,7 +438,8 @@
                         "content":"test"
                     }, 
                     "to": token
-                }
+                },
+                method: 'POST'
             });
         }
     </script>
