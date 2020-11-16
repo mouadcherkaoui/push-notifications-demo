@@ -9,11 +9,6 @@
     <button onclick="subscribe()">Subscribe</button>
 
     <script>
-        addEventListener('load', async () =>{
-            let serviceWorker = await navigator.serviceWorker.register('service-worker.js');
-            console.log(serviceWorker);
-        });
-
         async function subscribe(){
             let serviceWorker = await navigator.serviceWorker.ready;
             let push = await serviceWorker.pushManager.subscribe({
