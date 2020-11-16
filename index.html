@@ -21,6 +21,7 @@
     <script src="node_modules/mustache/mustache.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
+
     <title>My Notifications</title>
 </head>
 
@@ -122,6 +123,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <!-- 
   Copyright IBM Corp. 2016, 2018
 
@@ -167,6 +169,8 @@
         <span tabindex="0"></span>
     </div>
 
+=======
+>>>>>>> 2b03242add5a1cc350864c0d65b60342042534d8
     <script src="https://unpkg.com/mustache@latest"></script>
     <button onclick="subscribe()">Subscribe</button>
 
@@ -295,7 +299,8 @@
                 <span class="bx--progress-line"></span>
             </li>
         </ul>
-    </script>
+  </script>
+
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -394,20 +399,17 @@
             var modal = document.getElementById('modal-lokx1olb9q');
             modal.setAttribute('visibility', 'block');
         }
-
+            
         var _tokens = [];
-
         function getTokensCollectionItems() {
             tokensRef = firebase.firestore().collection('tokens');
-            tokensRef.onSnapshot(snapshot => {
-                snapshot.docChanges().forEach(change => {
-                    if (change.type === 'added') {
-                        _tokens.push({
-                            id: change.doc.id,
-                            ...change.doc.data()
-                        });
-                    }
-                });
+            tokensRef.onSnapshot(snapshot => { 
+                snapshot.docChanges().forEach(change => 
+                    { 
+                        if(change.type === 'added'){
+                            _tokens.push({ id: change.doc.id, ...change.doc.data()});
+                        }
+                    });
                 console.log(_tokens);
                 renderTokenItems();
             });
