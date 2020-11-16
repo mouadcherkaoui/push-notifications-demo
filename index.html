@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-firestore.js"></script>
+
+    <!-- JQuery for AJAX calls when required -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- IBM Carbon design components script and css cdns for UI components and style -->
+    <link href="https://unpkg.com/carbon-components/css/carbon-components.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
+    
+    <!-- mustache and handlebars scripts for templating-->
+    <script src="node_modules/mustache/mustache.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+    <title>My Notifications</title>
+</head>
+
+<body>
+    <!--
+  Copyright IBM Corp. 2016, 2018
+
+  This source code is licensed under the Apache-2.0 license found in the
+  LICENSE file in the root directory of this source tree.
+-->
+
+    <div data-tabs class="bx--tabs">
+        <div class="bx--tabs-trigger" tabindex="0">
+            <a href="javascript:void(0)" class="bx--tabs-trigger-text" tabindex="-1"></a>
+            <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;"
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
+            </svg>
+        </div>
+        <ul class="bx--tabs__nav bx--tabs__nav--hidden" role="tablist">
+            <li class="bx--tabs__nav-item bx--tabs__nav-item--selected " data-target=".tab-1-default" role="tab"
+                aria-selected="true">
+                <a tabindex="0" id="tab-link-1-default" class="bx--tabs__nav-link" href="javascript:void(0)" role="tab"
+                    aria-controls="tab-panel-1-default">Tab label 1</a>
+            </li>
+            <li class="bx--tabs__nav-item " data-target=".tab-2-default" role="tab">
+                <a tabindex="0" id="tab-link-2-default" class="bx--tabs__nav-link" href="javascript:void(0)" role="tab"
+                    aria-controls="tab-panel-2-default">Tab label 2</a>
+            </li>
+            <li class="bx--tabs__nav-item " data-target=".tab-3-default" role="tab">
+                <a tabindex="0" id="tab-link-3-default" class="bx--tabs__nav-link" href="javascript:void(0)" role="tab"
+                    aria-controls="tab-panel-3-default">Tab label 3</a>
+            </li>
+            <li class="bx--tabs__nav-item  bx--tabs__nav-item--disabled " data-target=".tab-4-default" role="tab"
+                aria-disabled="true">
+                <a tabindex="0" id="tab-link-4-default" class="bx--tabs__nav-link" href="javascript:void(0)" role="tab"
+                    aria-controls="tab-panel-4-default">Tab label 4</a>
+            </li>
+        </ul>
+    </div>
+    <!-- The markup below is for demonstration purposes only -->
+    <div class="bx--tab-content">
+        <div id="tab-panel-1-default" class="tab-1-default" role="tabpanel" aria-labelledby="tab-link-1-default"
+            aria-hidden="false">
+            <div>
+
+                <!--
+                    Copyright IBM Corp. 2016, 2018
+
+                    This source code is licensed under the Apache-2.0 license found in the
+                    LICENSE file in the root directory of this source tree.
+                -->
+                <!-- v10 Data Table -->
+                <!-- End Toolbar Content -->
+
+                <!-- Table -->
+                <table class="bx--data-table  bx--data-table--zebra  ">
+                    <thead>
+                        <tr>
+                            <th>
+                                <!-- checkbox th -->
+                                <!-- sortable th  -->
+                                <span class="bx--table-header-label">Subscription Id</span>
+                            </th>
+                            <th>
+                                <!-- checkbox th -->
+                                <!-- sortable th  -->
+                                <span class="bx--table-header-label">Description</span>
+                            </th>
+                            <th>
+                                <!-- checkbox th -->
+                                <!-- sortable th  -->
+                                <span class="bx--table-header-label">Details</span>
+                            </th>
+                            <th>
+                                <span class="bx--table-header-label">Send Notification</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="target">
+                    </tbody>
+                </table>
+
+                <button class="bx--btn bx--btn--primary" type="button" data-modal-target="#modal-lokx1olb9q">new
+                    subscription</button>
+            </div>
+        </div>
+        <div id="tab-panel-2-default" class="tab-2-default" role="tabpanel" aria-labelledby="tab-link-2-default"
+            aria-hidden="true" hidden>
+            <div>Content for second tab goes here.</div>
+        </div>
+        <div id="tab-panel-3-default" class="tab-3-default" role="tabpanel" aria-labelledby="tab-link-3-default"
+            aria-hidden="true" hidden>
+            <div>Content for third tab goes here.</div>
+        </div>
+        <div id="tab-panel-4-default" class="tab-4-default" role="tabpanel" aria-labelledby="tab-link-4-default"
+            aria-hidden="true" hidden>
+            <div>Content for fourth tab goes here.</div>
+        </div>
+    </div>
+
+    <!-- 
+  Copyright IBM Corp. 2016, 2018
+
+  This source code is licensed under the Apache-2.0 license found in the
+  LICENSE file in the root directory of this source tree.
+-->
+
+
+    <div data-modal id="modal-lokx1olb9q" class="bx--modal " role="dialog" aria-modal="true"
+        aria-labelledby="modal-lokx1olb9q-label" aria-describedby="modal-lokx1olb9q-heading" tabindex="-1">
+        <div class="bx--modal-container">
+            <div class="bx--modal-header">
+                <p class="bx--modal-header__label bx--type-delta" id="modal-lokx1olb9q-label">Optional label</p>
+                <p class="bx--modal-header__heading bx--type-beta" id="modal-lokx1olb9q-heading">Modal heading</p>
+                <button class="bx--modal-close" type="button" data-modal-close aria-label="close modal">
+                    <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;"
+                        xmlns="http://www.w3.org/2000/svg" class="bx--modal-close__icon" width="16" height="16"
+                        viewBox="0 0 16 16" aria-hidden="true">
+                        <path d="M12 4.7L11.3 4 8 7.3 4.7 4 4 4.7 7.3 8 4 11.3 4.7 12 8 8.7 11.3 12 12 11.3 8.7 8z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Note: Modals with content that scrolls, at any viewport, requires `tabindex="0"` on the `bx--modal-content` element -->
+
+            <div class="bx--modal-content" id="subscription-modal">
+                <!--
+                  Copyright IBM Corp. 2016, 2018
+                
+                  This source code is licensed under the Apache-2.0 license found in the
+                  LICENSE file in the root directory of this source tree.
+                -->
+            </div>
+            <div class="bx--modal-content--overflow-indicator"></div>
+
+            <div class="bx--modal-footer">
+                <button class="bx--btn bx--btn--secondary" type="button" data-modal-close>Secondary button</button>
+                <button class="bx--btn bx--btn--primary" type="button" data-modal-primary-focus>Primary button</button>
+            </div>
+        </div>
+        <!-- Note: focusable span allows for focus wrap feature within Modals -->
+        <span tabindex="0"></span>
+    </div>
+
+    <script src="https://unpkg.com/mustache@latest"></script>
+    <button onclick="subscribe()">Subscribe</button>
+
+    <script id="subscription-item" type="x-tmpl-mustache">
+        {{#tokens}}
+        <tr>
+            <!-- expand icon td -->
+            <td>
+                <!-- truncated new markup -->
+                {{id}}
+            </td>
+            <!-- expand icon td -->
+            <td>
+                <!-- truncated new markup -->
+                {{token}}
+            </td>
+            <!-- expand icon td -->
+            <td>
+                <!-- truncated new markup -->
+                description
+            </td>
+            <!-- expand icon td -->
+            <td>
+                <!-- truncated new markup -->
+                <a onclick="sendNotification('{{token}}')">Send!</a>
+            </td>
+
+        </tr>
+        {{/tokens}}
+    </script>
+
+    <script id="tab-template" type="x-tmpl-mustache">
+        <div id="tab-panel-1-default" class="tab-1-default" role="tabpanel"     
+        aria-labelledby="tab-link-1-default" aria-hidden="false">
+            <div>{{content}}</div>
+        </div>
+    </script>
+
+    <script id="progress-indicator" type="x-tmpl-mustache">
+        <ul data-progress data-progress-current class="bx--progress ">
+            <li class="bx--progress-step bx--progress-step--complete " data-target="#step1">
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;"
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                    aria-hidden="true">
+                    <path
+                        d="M8,1C4.1,1,1,4.1,1,8s3.1,7,7,7s7-3.1,7-7S11.9,1,8,1z M8,14c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S11.3,14,8,14z">
+                    </path>
+                    <path d="M7 10.8L4.5 8.3 5.3 7.5 7 9.2 10.7 5.5 11.5 6.3z"></path>
+                </svg>
+                <p tabindex="0" class="bx--progress-label">
+                    First step
+                </p>
+                <div id="label-tooltip" role="tooltip" data-floating-menu-direction="bottom" class="bx--tooltip"
+                    data-avoid-focus-on-open>
+                    <span class="bx--tooltip__caret"></span>
+                    <p class="bx--tooltip__text"></p>
+                </div>
+                <p class="bx--progress-optional">Optional</p>
+                <span class="bx--progress-line"></span>
+            </li>
+            <li class="bx--progress-step bx--progress-step--current " data-target=".tab-2-default" data-role="tab">
+                <svg>
+                    <path d="M 7, 7 m -7, 0 a 7,7 0 1,0 14,0 a 7,7 0 1,0 -14,0"></path>
+                </svg>
+                <p tabindex="0" class="bx--progress-label" aria-describedby="label-tooltipfddfl7tdjg4">
+                </p>
+                <div id="label-tooltipfddfl7tdjg4" role="tooltip" data-floating-menu-direction="bottom"
+                    class="bx--tooltip" data-avoid-focus-on-open>
+                    <span class="bx--tooltip__caret"></span>
+                    <p class="bx--tooltip__text">Overflow Ex.1</p>
+                </div>
+                <span class="bx--progress-line"></span>
+            </li>
+            <li class="bx--progress-step bx--progress-step--incomplete ">
+                <svg>
+                    <path
+                        d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
+                    </path>
+                </svg>
+                <p tabindex="0" class="bx--progress-label" aria-describedby="label-tooltip9rv27he8c08">
+                    Overflow Ex. 2 Multi Line
+                </p>
+                <div id="label-tooltip9rv27he8c08" role="tooltip" data-floating-menu-direction="bottom"
+                    class="bx--tooltip" data-avoid-focus-on-open>
+                    <span class="bx--tooltip__caret"></span>
+                    <p class="bx--tooltip__text">Overflow Ex. 2 Multi Line</p>
+                </div>
+                <span class="bx--progress-line"></span>
+            </li>
+            <li class="bx--progress-step bx--progress-step--incomplete " data-invalid>
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;"
+                    xmlns="http://www.w3.org/2000/svg" class="bx--progress__warning" width="16" height="16"
+                    viewBox="0 0 16 16" aria-hidden="true">
+                    <path
+                        d="M8,1C4.1,1,1,4.1,1,8s3.1,7,7,7s7-3.1,7-7S11.9,1,8,1z M8,14c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S11.3,14,8,14z">
+                    </path>
+                    <path
+                        d="M7.5 4H8.5V9H7.5zM8 10.2c-.4 0-.8.3-.8.8s.3.8.8.8c.4 0 .8-.3.8-.8S8.4 10.2 8 10.2z">
+                    </path>
+                </svg>
+                <p tabindex="0" class="bx--progress-label">
+                    Fourth step
+                </p>
+                <div id="label-tooltip" role="tooltip" data-floating-menu-direction="bottom" class="bx--tooltip"
+                    data-avoid-focus-on-open>
+                    <span class="bx--tooltip__caret"></span>
+                    <p class="bx--tooltip__text"></p>
+                </div>
+                <span class="bx--progress-line"></span>
+            </li>
+            <li class="bx--progress-step bx--progress-step--incomplete  bx--progress-step--disabled "
+                aria-disabled="true">
+                <svg>
+                    <path
+                        d="M8 1C4.1 1 1 4.1 1 8s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm0 13c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z">
+                    </path>
+                </svg>
+                <p tabindex="0" class="bx--progress-label">
+                    Fifth step
+                </p>
+                <div id="label-tooltip" role="tooltip" data-floating-menu-direction="bottom" class="bx--tooltip"
+                    data-avoid-focus-on-open>
+                    <span class="bx--tooltip__caret"></span>
+                    <p class="bx--tooltip__text"></p>
+                </div>
+                <span class="bx--progress-line"></span>
+            </li>
+        </ul>
+    </script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD97qANmG63Y_hxrWne13hzT4CYzDLntME",
+            authDomain: "socialize-push.firebaseapp.com",
+            databaseURL: "https://socialize-push.firebaseio.com",
+            projectId: "socialize-push",
+            storageBucket: "socialize-push.appspot.com",
+            messagingSenderId: "386080765485",
+            appId: "1:386080765485:web:63da65394f72b1a9fcaaa4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        const messaging = firebase.messaging();
+        const firestore = firebase.firestore();
+
+        getStartToken()
+            .then((token) => {
+                messaging.onMessage(function (payload) {
+                    console.log("onMessage", payload);
+                });
+                console.log(token);
+            })
+            .catch(err => console.log(err));
+
+
+        async function getStartToken() {
+            try {
+                const token = await messaging.getToken();
+                if (token) {
+                    sendTokenToServer(token);
+                    return token;
+                } else {
+                    await RequestPermission();
+                    setTokenSentToServer(false);
+                }
+            } catch (error) {
+                setTokenSentToServer(false);
+                console.log(error);
+            }
+        }
+
+        async function RequestPermission() {
+            try {
+                const permission = await messaging.requestPermission()
+                if (permission === 'granted') {
+                    console.log('permission granted');
+                    await getStartToken();
+                } else {
+                    console.log('permission denied');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        async function sendTokenToServer(token) {
+            if (!isTokenSentToServer()) {
+                const result = await firestore.collection('tokens').add({
+                    token: token
+                });
+                console.log(result);
+                setTokenSentToServer(true);
+            }
+        }
+
+        function isTokenSentToServer() {
+            return window.localStorage.getItem('sendTokenToServer') === '1';
+        }
+
+        function setTokenSentToServer(sent) {
+            window.localStorage.setItem('sendTokenToServer', sent ? '1' : '0');
+        }
+    </script>
+
+    <script>
+        var tabs = [{
+                id: "tab1",
+                title: 'subscriptions',
+                content: '<p><b>content1</b></p>'
+            },
+            {
+                id: "tab2",
+                title: 'subscriptions',
+                content: '<p><b>content1</b></p>'
+            },
+            {
+                id: "tab3",
+                title: 'subscriptions',
+                content: '<p><b>content1</b></p>'
+            }
+        ];
+
+        function showSubscriptionWizard() {
+            var modal = document.getElementById('modal-lokx1olb9q');
+            modal.setAttribute('visibility', 'block');
+        }
+
+        var _tokens = [];
+
+        function getTokensCollectionItems() {
+            tokensRef = firebase.firestore().collection('tokens');
+            tokensRef.onSnapshot(snapshot => {
+                snapshot.docChanges().forEach(change => {
+                    if (change.type === 'added') {
+                        _tokens.push({
+                            id: change.doc.id,
+                            ...change.doc.data()
+                        });
+                    }
+                });
+                console.log(_tokens);
+                renderTokenItems();
+            });
+        }
+
+        function renderTokenItems() {
+            var template = document.getElementById('subscription-item').innerHTML;
+            var rendered = Mustache.render(template, {
+                tokens: _tokens
+            });
+            document.getElementById('target').innerHTML = rendered;
+        }
+
+        getTokensCollectionItems();
+
+        function sendNotification(token) {
+            $.ajax('https://fcm.googleapis.com/fcm/send', {
+                headers: [
+                    {'Content-Type': 'application/json'},
+                    {'Authorization': 'AAAAWeQ09i0:APA91bGFCjMvlMlIXRGkqFyKb_of6jQDMQjyo9GbfwtrhG3vtZyYBZLZSG5TYZddTIuqLX_ziCT-_vMsWnGCfQhNYWPcawsziPN0ozZsWLujb9j4caV8nLDUHcf_IjnY2ml61qkH2H09'}
+                ],
+                data:  { 
+                    "data": {
+                        "title": "from powershell test data", 
+                        "body":"body"
+                    }, 
+                    "body": {
+                        "title": "from powershell test", 
+                        "content":"test"
+                    }, 
+                    "to": token
+                }
+            });
+        }
+    </script>
+
+    <script>
+        addEventListener('load', async () => {
+            let serviceWorker = await navigator.serviceWorker.register('service-worker.js');
+            console.log(serviceWorker);
+        });
+        async function subscribe() {
+            // await getStartToken();
+            // renderTokenItems();
+            // messaging.onMessage(function (payload) {
+            //     console.log("onMessage", payload);
+            // });
+
+            let serviceWorker = await navigator.serviceWorker.ready;
+            let push = await serviceWorker.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: 'BNVZJPs4Nj82Ok5SX0rAunsda_mXMKGrwJY2f6tqFBCf96hi5jWt8ScjeRMH8ibILL_BxSs41eSpu8sf34JFPlk'
+            });
+            console.log(JSON.stringify(push));
+        }
+    </script>
+</body>
+
+</html>
