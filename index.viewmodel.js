@@ -1,3 +1,16 @@
+async function include(file) { 
+  
+    var script  = document.createElement('script'); 
+    script.src  = file; 
+    script.type = 'text/javascript'; 
+    script.defer = true; 
+    
+    document.getElementsByTagName('head').item(0).appendChild(script); 
+    
+} 
+renderModal();
+
+include('./templates/subscription-item.js');
 // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyD97qANmG63Y_hxrWne13hzT4CYzDLntME",
@@ -90,6 +103,12 @@ var tabs = [{
     }
 ];
 
+function renderModal() {
+    var modal = Handlebars.compile(modalTemplate);
+    rendered = modal({});
+    document.getElementById('modal-target').innerHTML = rendered;
+}
+
 function showSubscriptionWizard() {
     var modal = document.getElementById('modal-lokx1olb9q');
     modal.setAttribute('visibility', 'block');
@@ -114,7 +133,7 @@ function getTokensCollectionItems() {
 }
 
 function renderTokenItems() {
-    var template = Handlebars.compile(document.getElementById('subscription-item').innerHTML);
+    var template = Handlebars.compile(subscriptionItemTemplate);
     var rendered = template({
         tokens: _tokens
     });

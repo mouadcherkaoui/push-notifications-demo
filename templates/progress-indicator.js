@@ -1,4 +1,4 @@
-
+var progressIndicatorTemplate = `
 <ul data-progress data-progress-current class="bx--progress ">
     <li class="bx--progress-step bx--progress-step--complete " data-target="#step1">
         <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;"
@@ -87,4 +87,4 @@
         </div>
         <span class="bx--progress-line"></span>
     </li>
-</ul>
+</ul>`;
