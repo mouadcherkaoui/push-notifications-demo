@@ -17,6 +17,9 @@ var subscriptionItemTemplate =
             description
         </td>
         <!-- expand icon td -->
+        <td>
+            <button class="bx--btn bx--btn-small">Delete</button>
+        </td>
     
     </tr>
     {{/tokens}}`;

@@ -1,49 +1,21 @@
-async function include(file) { 
-  
-    var script  = document.createElement('script'); 
-    script.src  = file; 
-    script.type = 'text/javascript'; 
-    script.defer = true; 
-    
-    document.getElementsByTagName('head').item(0).appendChild(script); 
-    
-} 
+importScripts('./firebase-config.js');
+
+importScripts('./templates/subscription-item.js');
+
 renderModal();
 
-include('./templates/subscription-item.js');
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyD97qANmG63Y_hxrWne13hzT4CYzDLntME",
-    authDomain: "socialize-push.firebaseapp.com",
-    databaseURL: "https://socialize-push.firebaseio.com",
-    projectId: "socialize-push",
-    storageBucket: "socialize-push.appspot.com",
-    messagingSenderId: "386080765485",
-    appId: "1:386080765485:web:63da65394f72b1a9fcaaa4"
-};
+let messaging;//: firebase.messaging;
+let firestore;//: firebase.firestore;
 
 function initializeWithConfig(config, publicVapidKey) {
     firebase.initializeApp(config);
-    const messaging = firebase.messaging();
+    messaging = firebase.messaging();
+    firestore = firebase.firestore();
 }
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+initializeWithConfig(firebaseConfig);
 
-const messaging = firebase.messaging();
-const firestore = firebase.firestore();
-
-// getStartToken()
-//     .then((token) => {
-//         messaging.onMessage(function (payload) {
-//             console.log("onMessage", payload);
-//         });
-//         console.log(token);
-//     })
-//     .catch(err => console.log(err));
-
-
-async function subscrbeClient() {
+async function subscribeClient() {
     try {
         const token = await messaging.getToken();
         if (token) {
@@ -123,7 +95,7 @@ function showSubscriptionWizard() {
 var _tokens = [];
 
 function getTokensCollectionItems() {
-    tokensRef = firebase.firestore().collection('tokens');
+    tokensRef = firestore.collection('tokens');
     tokensRef.onSnapshot(snapshot => {
         snapshot.docChanges().forEach(change => {
             if (change.type === 'added') {
@@ -144,28 +116,4 @@ function renderTokenItems() {
         tokens: _tokens
     });
     document.getElementById('target').innerHTML = rendered;
-}
-
-function sendNotification(token) {
-    $.ajax('https://fcm.googleapis.com/fcm/send', {
-        headers: [{
-                'Content-Type': 'application/json'
-            },
-            {
-                'Authorization': 'AAAAWeQ09i0:APA91bGFCjMvlMlIXRGkqFyKb_of6jQDMQjyo9GbfwtrhG3vtZyYBZLZSG5TYZddTIuqLX_ziCT-_vMsWnGCfQhNYWPcawsziPN0ozZsWLujb9j4caV8nLDUHcf_IjnY2ml61qkH2H09'
-            }
-        ],
-        data: {
-            "data": {
-                "title": "from powershell test data",
-                "body": "body"
-            },
-            "body": {
-                "title": "from powershell test",
-                "content": "test"
-            },
-            "to": token
-        },
-        method: 'POST'
-    });
 }
