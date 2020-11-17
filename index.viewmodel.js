@@ -1,8 +1,6 @@
 // import { firebaseConfig } from './firebase-config';
 // import { subscriptionItemTemplate } from './templates/subscription-item.js';
 
-renderModal();
-
 let messaging;//: firebase.messaging;
 let firestore;//: firebase.firestore;
 
@@ -79,17 +77,6 @@ var tabs = [{
         content: '<p><b>content1</b></p>'
     }
 ];
-
-function renderModal() {
-    var modal = Handlebars.compile(modalTemplate);
-    rendered = modal({});
-    document.getElementById('modal-target').innerHTML = rendered;
-}
-
-function showSubscriptionWizard() {
-    var modal = document.getElementById('modal-lokx1olb9q');
-    modal.setAttribute('visibility', 'block');
-}
 
 var _tokens = [];
 

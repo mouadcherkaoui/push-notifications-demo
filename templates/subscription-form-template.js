@@ -41,3 +41,9 @@ var subscriptionConfigTemplate = `<!--
 <div class="bx--form-item">
   <button class="bx--btn bx--btn--primary" type="button">Submit</button>
 </div>`
+
+function renderSubscriptionForm() {
+    var subscriptionForm = Handlebars.compile(subscriptionItemTemplate);
+    var html = subscriptionForm({});
+    document.getElementById('subscription-form-target').innerHTML = html;
+}

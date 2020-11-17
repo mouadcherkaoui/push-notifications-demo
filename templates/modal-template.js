@@ -15,7 +15,7 @@ aria-labelledby="modal-lokx1olb9q-label" aria-describedby="modal-lokx1olb9q-head
     </div>
 
 
-    <div class="bx--modal-content" id="subscription-modal">
+    <div class="bx--modal-content" id="subscription-form-target">
         <!--
           Copyright IBM Corp. 2016, 2018
         
@@ -33,3 +33,12 @@ aria-labelledby="modal-lokx1olb9q-label" aria-describedby="modal-lokx1olb9q-head
 <!-- Note: focusable span allows for focus wrap feature within Modals -->
 <span tabindex="0"></span>
 </div> `;
+
+function renderModal() {
+    var modal = Handlebars.compile(modalTemplate);
+    var html = modal({});
+    document.getElementById('modal-target').innerHTML = html;
+}
+
+renderModal();
+renderSubscriptionForm();
