@@ -3,14 +3,16 @@
 
 let messaging;//: firebase.messaging;
 let firestore;//: firebase.firestore;
+let publicVapidKey;
 
 function initializeWithConfig(config, publicVapidKey) {
     firebase.initializeApp(config);
+    localStorage.setItem('config', JSON.stringify({ firebaseConfig: config, publicVapidKey: publicVapidKey }));
     messaging = firebase.messaging();
     firestore = firebase.firestore();
 }
 
-initializeWithConfig(firebaseConfig);
+initializeWithConfig(firebaseConfig, publicVapidKey);
 
 async function subscribeClient() {
     try {

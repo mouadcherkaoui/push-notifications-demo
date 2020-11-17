@@ -6,31 +6,44 @@ var customConfigTemplate = `<!--
 -->
 
 <div class="bx--form-item">
-  <label for="endpoint-public-key" class="bx--label">Identifier</label>
+  <label for="endpoint-public-key" class="bx--label">la cle publique VapIdKey</label>
   <div class="bx--form__helper-text">
-    Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)
+    le cle vapid public du point de terminaison
   </div>
   <input id="endpoint-public-key" type="text"
     class="bx--text-input"
-    placeholder="my laptop">
+    placeholder="********************">
 </div>
 <div class="bx--form-item">
   <label for="firebase-config" class="bx--label">Firebase config</label>
   <div class="bx--form__helper-text">
-    Optional helper text here; if message is more than one line text should wrap (~100 character count maximum)
+    Inserer la configuration generer par la console firebase 
   </div>
   <textarea id="firebase-config" class="bx--text-area"
-    rows="4" cols="50" placeholder="put you config object here"></textarea>
+    rows="4" cols="50" placeholder="{{configPlaceholder}}"></textarea>
 </div>
-<div class="bx--form-item">
-  <button class="bx--btn bx--btn--primary" type="button">Submit</button>
-</div>`;
-
+`;
+var configPlaceholder = `
+firebaseConfig = {
+  apiKey: "********************",
+  authDomain: "**********.firebaseapp.com",
+  databaseURL: "https://**********.firebaseio.com",
+  projectId: "**********",
+  storageBucket: "***********.appspot.com",
+  messagingSenderId: "********************",
+  appId: "********************"
+};
+`
 function renderCustomConfigForm() {
     var configForm = Handlebars.compile(customConfigTemplate);
-    var html = configForm({});
+    var html = configForm({ configPlaceholder: configPlaceholder});
     document.getElementById('custom-config-target').innerHTML = html;
 }
 
 renderCustomConfigForm();
 
+function applyConfig() {
+  eval(document.getElementById('firebase-config').value);
+  let vapIdKey = document.getElementById('endpoint-public-key').value;
+  initializeWithConfig(firebaseConfig, vapIdKey).then
+}

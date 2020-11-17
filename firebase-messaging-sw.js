@@ -33,7 +33,15 @@ function initializeWithConfig(config, publicVapidKey) {
     });
 }
 
-initializeWithConfig(firebaseConfig, 'BH3RMd7zUDygYXo-UC9xES2dXdglgiwcSjs7PxWHwAjswoUgkn_aO5LM8pQGeYSeBn1SU3f11gnRlTiQsCYicic');
+let customConfig = JSON.parse(localStorage.getItem('config'));
+let publicVapidKey = 'BH3RMd7zUDygYXo-UC9xES2dXdglgiwcSjs7PxWHwAjswoUgkn_aO5LM8pQGeYSeBn1SU3f11gnRlTiQsCYicic';
+
+if(customConfig !== 'undefined'){
+    firebaseConfig = customConfig.firebaseConfig;
+    publicVapidKey = customConfig.publicVapidKey;
+}
+
+initializeWithConfig(firebaseConfig, publicVapidKey);
 
 //Code for adding event on click of notification
 self.addEventListener('notificationclick', function (event) {
