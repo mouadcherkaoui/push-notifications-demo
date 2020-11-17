@@ -10,13 +10,14 @@ var firebaseConfig = {
     messagingSenderId: "65211879809",
     appId: "1:65211879909:web:3ae38ef1cdcb2e01fe5f0c",
 };
+
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 messaging.usePublicVapidKey('BH3RMd7zUDygYXo-UC9xES2dXdglgiwcSjs7PxWHwAjswoUgkn_aO5LM8pQGeYSeBn1SU3f11gnRlTiQsCYicic');
 messaging.onBackgroundMessage(function (payload) {
     const notificationTitle = payload.data.title;
     const notificationOptions = {
-        body: payload.data.message,
+        body: payload.data.body,
         icon: '',
         data: {
             url: payload.data.onClick
