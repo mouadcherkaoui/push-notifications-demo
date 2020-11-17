@@ -8,9 +8,10 @@ $data= @"
  { 
     "data": {
         "title": "from powershell test data", 
-        "body":"body"
+        "body":"body",
+        "onClick": "()=>{alert('test');}"
     }, 
-    "to":"cZ8LHMW2DTZY09k5XTg9mm:APA91bFIMkd96AfxyDJ5MQrgnfxIiD4Cb9kFFFA8J3eFISCiz1G9B2J1OJB2NIGXoPnC4xdHh8GuxxoYoYgTfYjlpWoc0RrHcyc7IPeA9rwjTuzgcAFd0nMg90Y_bEzebpJV9nd30qET"
+    "to":"f5ndavbcJdMcVMpfztE_Sy:APA91bG5Ody2Sa3ZAdpoMXHt6weIJArViqKF6RzJtGReJoyPq-dU6t6uMKRlnMEeAqRRldHGvJD5ysQbEKZeSlynHO_dWgixOEE8MBd1_lafPBI94mRlnxShN2XEm698serEER_JNh0-"
 }
 "@
 

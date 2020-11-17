@@ -17,7 +17,7 @@ messaging.usePublicVapidKey('BH3RMd7zUDygYXo-UC9xES2dXdglgiwcSjs7PxWHwAjswoUgkn_
 messaging.onBackgroundMessage(function (payload) {
     const notificationTitle = payload.data.title;
     const notificationOptions = {
-        body: payload.data.body,
+        body: payload.body,
         icon: '',
         data: {
             url: payload.data.onClick
