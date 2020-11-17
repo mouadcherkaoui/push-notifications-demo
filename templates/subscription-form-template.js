@@ -1,4 +1,4 @@
-var subscriptionConfigTemplate = `<!--
+var subscriptionTemplate = `<!--
   Copyright IBM Corp. 2016, 2018
 
   This source code is licensed under the Apache-2.0 license found in the
@@ -43,7 +43,7 @@ var subscriptionConfigTemplate = `<!--
 </div>`
 
 function renderSubscriptionForm() {
-    var subscriptionForm = Handlebars.compile(subscriptionItemTemplate);
+    var subscriptionForm = Handlebars.compile(subscriptionTemplate);
     var html = subscriptionForm({});
     document.getElementById('subscription-form-target').innerHTML = html;
 }
