@@ -96,7 +96,12 @@
                     <tbody id="target">
                     </tbody>
                 </table>
-
+                <input type="checkbox" id="use-custom-config"/>
+                <label>Use your own config:</label>
+                <textarea class="bx--textarea" id="firebase-config">
+                <label>Endpoint Public Key</label>
+                <input type="text" id="endpoint-public-key"/>
+                </textarea>
                 <button class="bx--btn bx--btn--primary" type="button" data-modal-target="#modal-lokx1olb9q">new
                     subscription</button>
             </div>
@@ -125,6 +130,7 @@
 
     <div id="modal-target">
     </div> 
+    
     <script src="./templates/modal-template.js"></script>
     <script id="tab-template" type="x-tmpl-mustache">
         <div id="tab-panel-1-default" class="tab-1-default" role="tabpanel"     
