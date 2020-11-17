@@ -3,7 +3,9 @@
 
 let messaging;//: firebase.messaging;
 let firestore;//: firebase.firestore;
+
 let publicVapidKey;
+let customConfig = false;
 
 function initializeWithConfig(config, publicVapidKey) {
     firebase.initializeApp(config);
@@ -13,6 +15,15 @@ function initializeWithConfig(config, publicVapidKey) {
 }
 
 initializeWithConfig(firebaseConfig, publicVapidKey);
+
+function toggleConfig() {
+    customConfig = !customConfig;
+    if(customConfig){
+        renderCustomConfigForm();
+    }else {
+        document.getElementById('custom-config-target').innerHTML = "";
+    }
+}
 
 async function subscribeClient() {
     try {

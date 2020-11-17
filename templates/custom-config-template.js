@@ -40,7 +40,7 @@ function renderCustomConfigForm() {
     document.getElementById('custom-config-target').innerHTML = html;
 }
 
-renderCustomConfigForm();
+//renderCustomConfigForm();
 
 function applyConfig() {
   eval(document.getElementById('firebase-config').value);
