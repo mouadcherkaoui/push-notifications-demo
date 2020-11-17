@@ -1,6 +1,5 @@
-importScripts('./firebase-config.js');
-
-importScripts('./templates/subscription-item.js');
+// import { firebaseConfig } from './firebase-config';
+// import { subscriptionItemTemplate } from './templates/subscription-item.js';
 
 renderModal();
 

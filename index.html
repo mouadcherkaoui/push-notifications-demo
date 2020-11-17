@@ -135,18 +135,14 @@
 
     <div id="modal-target">
     </div> 
-
+    <script src="./firebase-config.js"></script>
+    <script src="./templates/subscription-item.js"></script>    
     <script src="./templates/modal-template.js"></script>
-    <script id="tab-template" type="x-tmpl-mustache">
-        <div id="tab-panel-1-default" class="tab-1-default" role="tabpanel"     
-        aria-labelledby="tab-link-1-default" aria-hidden="false">
-            <div>{{content}}</div>
-        </div>
+
+    <script src="index.viewmodel.js"></script>
+    <script>
+        getTokensCollectionItems();
     </script>
-  <script src="index.viewmodel.js"></script>
-  <script>
-      getTokensCollectionItems();
-  </script>
 </body>
 
 </html>
