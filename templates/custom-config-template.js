@@ -24,4 +24,13 @@ var customConfigTemplate = `<!--
 </div>
 <div class="bx--form-item">
   <button class="bx--btn bx--btn--primary" type="button">Submit</button>
-</div>`
+</div>`;
+
+function renderCustomConfigForm() {
+    var configForm = Handlebars.compile(customConfigTemplate);
+    var html = configForm({});
+    document.getElementById('custom-config-target').innerHTML = html;
+}
+
+renderCustomConfigForm();
+
