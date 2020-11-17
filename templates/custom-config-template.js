@@ -32,5 +32,5 @@ function renderCustomConfigForm() {
     document.getElementById('custom-config-target').innerHTML = html;
 }
 
-renderCustomConfigForm();
+//renderCustomConfigForm();
 
