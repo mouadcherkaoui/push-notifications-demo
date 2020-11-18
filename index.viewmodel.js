@@ -40,9 +40,12 @@ function toggleConfig() {
 
 async function subscribeClient() {
     try {
+        let identifier = document.getElementById('subscription-identifier').value;
+        let description = document.getElementById('subscription-description').value;
+
         const token = await messaging.getToken();
         if (token) {
-            sendTokenToServer(token);
+            sendTokenToServer({identifier, description, token});
             return token;
         } else {
             await RequestPermission();
@@ -68,11 +71,9 @@ async function RequestPermission() {
     }
 }
 
-async function sendTokenToServer(token) {
+async function sendTokenToServer(subscription) {
     if (!isTokenSentToServer()) {
-        const result = await firestore.collection('tokens').add({
-            token: token
-        });
+        const result = await firestore.collection('tokens').add(subscription);
         console.log(result);
         setTokenSentToServer(true);
     }

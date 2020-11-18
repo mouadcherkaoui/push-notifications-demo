@@ -30,7 +30,7 @@ var subscriptionTemplate = `<!--
       <select  id="select-id"
         class="bx--select-input ">
 
-        <option class="bx--select-option" value=""  disabled selected hidden>Choose an option </option>  
+        <option class="bx--select-option" value=""  disabled selected hidden>Choose a Topic </option>  
         <option class="bx--select-option" value="solong" >A much longer option that is worth having around to check how text flows </option>          <optgroup class="bx--select-optgroup" label="Category 1">
           <option class="bx--select-option" value="option1" >Option 1 </option>           <option class="bx--select-option" value="option2" >Option 2 </option>  </optgroup>          <optgroup class="bx--select-optgroup" label="Category 2">
           <option class="bx--select-option" value="option1" >Option 1 </option>           <option class="bx--select-option" value="option2" >Option 2 </option>  </optgroup>   </select>
@@ -39,7 +39,7 @@ var subscriptionTemplate = `<!--
   </div>
 </div>
 <div class="bx--form-item">
-  <button class="bx--btn bx--btn--primary" type="button">Submit</button>
+  <button class="bx--btn bx--btn--primary" type="button" onclick="subscribeClient()">Submit</button>
 </div>`
 
 function renderSubscriptionForm() {
@@ -47,3 +47,4 @@ function renderSubscriptionForm() {
     var html = subscriptionForm({});
     document.getElementById('subscription-form-target').innerHTML = html;
 }
+
