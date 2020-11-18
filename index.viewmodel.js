@@ -10,13 +10,13 @@ let app;
 
 function initializeWithConfig(config, publicVapidKey) {
     if(firebase.apps.length) 
-        firebase.app('push-notifications-demo')
+        firebase.app()
             .delete()
             .then(() => {
-                app = firebase.initializeApp(config, 'push-notifications-demo');
+                app = firebase.initializeApp(config);
             });
     else {
-        app = firebase.initializeApp(config, 'push-notifications-demo');        
+        app = firebase.initializeApp(config);        
     }
     console.log(app);
 

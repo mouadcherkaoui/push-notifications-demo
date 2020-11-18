@@ -27,7 +27,7 @@ aria-labelledby="modal-lokx1olb9q-label" aria-describedby="modal-lokx1olb9q-head
 
     <div class="bx--modal-footer">
         <button class="bx--btn bx--btn--secondary" type="button" data-modal-close>Secondary button</button>
-        <button class="bx--btn bx--btn--primary" type="button" data-modal-primary-focus onclick="applyConfig()">Primary button</button>
+        <button class="bx--btn bx--btn--primary" type="button" data-modal-primary-focus onclick="subscribeClient()">Primary button</button>
     </div>
 </div>
 <!-- Note: focusable span allows for focus wrap feature within Modals -->
