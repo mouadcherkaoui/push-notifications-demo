@@ -1,4 +1,4 @@
-const modalTemplate = `<div data-modal id="modal-lokx1olb9q" class="bx--modal " role="dialog" aria-modal="true"
+const modalTemplate = `<div data-modal id="{{id}}" class="bx--modal " role="dialog" aria-modal="true"
 aria-labelledby="modal-lokx1olb9q-label" aria-describedby="modal-lokx1olb9q-heading" tabindex="-1">
 <div class="bx--modal-container">
     <div class="bx--modal-header">

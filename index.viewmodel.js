@@ -77,10 +77,12 @@ async function sendTokenToServer(subscription) {
         const result = await firestore.collection('tokens').add(subscription);    
         var modal = CarbonComponents.Modal.components.get(document.getElementById('modal-lokx1olb9q'));
         modal.hide();    
+
         setTokenSentToServer(true);        
     }else {
-        renderModal('secondary-modal-target', { primary_action: 'setTokenSentToServer(false)', html_content: '<h3>content</h3>'});
-        //CarbonComponents.Modal.components(document.getElementById(''))
+        renderModal('secondary-modal-target', { id:'alert-modal', primary_action: 'setTokenSentToServer(false)', html_content: '<h3>content</h3>'});
+        var modal = CarbonComponents.Modal.components.get(document.getElementById('alert-modal'));
+        modal.show();        
     }
 }
 
