@@ -11,9 +11,6 @@ var firebaseConfig = {
     appId: "1:65211879909:web:3ae38ef1cdcb2e01fe5f0c",
 };
 
-function setFirebaseConfig(config){
-    firebaseConfig = config;
-}
 
 function initializeWithConfig(config, publicVapidKey) {
     firebase.initializeApp(config, 'push-notifications-demo');
@@ -33,18 +30,19 @@ function initializeWithConfig(config, publicVapidKey) {
     });
 }
 
-let customConfig;
 let publicVapidKey = 'BH3RMd7zUDygYXo-UC9xES2dXdglgiwcSjs7PxWHwAjswoUgkn_aO5LM8pQGeYSeBn1SU3f11gnRlTiQsCYicic';
+
+//let customConfig;
 
 // caches.open('fcm-sw').then((cache) => {
 //     customConfig = JSON.parse(cache.get('config'));
 // });
-
+/*
 if(customConfig){
     firebaseConfig = customConfig.firebaseConfig;
     publicVapidKey = customConfig.publicVapidKey;
 }
-
+*/
 initializeWithConfig(firebaseConfig, publicVapidKey);
 
 //Code for adding event on click of notification
