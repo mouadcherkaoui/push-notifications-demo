@@ -19,7 +19,8 @@ function initializeWithConfig(config, publicVapidKey) {
         app = firebase.initializeApp(config, 'push-notifications-demo');        
     }
     console.log(app);
-    localStorage.setItem('config', JSON.stringify({ firebaseConfig: config, publicVapidKey: publicVapidKey }));
+
+    caches.add('config', JSON.stringify({ firebaseConfig: config, publicVapidKey: publicVapidKey }));
     messaging = app.messaging();
     firestore = app.firestore();
 }
