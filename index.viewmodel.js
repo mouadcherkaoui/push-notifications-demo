@@ -6,12 +6,22 @@ let firestore;//: firebase.firestore;
 
 let publicVapidKey;
 let customConfig = false;
+let app;
 
 function initializeWithConfig(config, publicVapidKey) {
-    firebase.initializeApp(config);
+    if(firebase.apps.length) 
+        firebase.app('push-notifications-demo')
+            .delete()
+            .then(() => {
+                app = firebase.initializeApp(config, 'push-notifications-demo');
+            });
+    else {
+        app = firebase.initializeApp(config, 'push-notifications-demo');        
+    }
+    console.log(app);
     localStorage.setItem('config', JSON.stringify({ firebaseConfig: config, publicVapidKey: publicVapidKey }));
-    messaging = firebase.messaging();
-    firestore = firebase.firestore();
+    messaging = app.messaging();
+    firestore = app.firestore();
 }
 
 initializeWithConfig(firebaseConfig, publicVapidKey);
@@ -46,7 +56,7 @@ async function RequestPermission() {
         const permission = await messaging.requestPermission()
         if (permission === 'granted') {
             console.log('permission granted');
-            await subscrbeClient();
+            await subscribeClient();
         } else {
             console.log('permission denied');
         }

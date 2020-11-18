@@ -22,6 +22,9 @@ var customConfigTemplate = `<!--
   <textarea id="firebase-config" class="bx--text-area"
     rows="4" cols="50" placeholder="{{configPlaceholder}}"></textarea>
 </div>
+<div class="bx--form-item">
+  <button class="bx--btn bx--btn-primary" onclick="applyConfig()">Apply Config</button>
+</div>
 `;
 var configPlaceholder = `
 firebaseConfig = {
@@ -45,5 +48,5 @@ function renderCustomConfigForm() {
 function applyConfig() {
   eval(document.getElementById('firebase-config').value);
   let vapIdKey = document.getElementById('endpoint-public-key').value;
-  initializeWithConfig(firebaseConfig, vapIdKey).then
+  initializeWithConfig(firebaseConfig, vapIdKey);
 }

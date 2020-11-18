@@ -16,7 +16,7 @@ function setFirebaseConfig(config){
 }
 
 function initializeWithConfig(config, publicVapidKey) {
-    firebase.initializeApp(config);
+    firebase.initializeApp(config, 'push-notifications-demo');
     const messaging = firebase.messaging();
     
     messaging.usePublicVapidKey(publicVapidKey);
@@ -36,7 +36,7 @@ function initializeWithConfig(config, publicVapidKey) {
 let customConfig = JSON.parse(localStorage.getItem('config'));
 let publicVapidKey = 'BH3RMd7zUDygYXo-UC9xES2dXdglgiwcSjs7PxWHwAjswoUgkn_aO5LM8pQGeYSeBn1SU3f11gnRlTiQsCYicic';
 
-if(customConfig !== 'undefined'){
+if(customConfig){
     firebaseConfig = customConfig.firebaseConfig;
     publicVapidKey = customConfig.publicVapidKey;
 }
