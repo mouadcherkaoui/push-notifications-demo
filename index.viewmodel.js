@@ -42,10 +42,13 @@ async function subscribeClient() {
     try {
         let identifier = document.getElementById('subscription-identifier').value;
         let description = document.getElementById('subscription-description').value;
+        
+        var modal = CarbonComponents.Modal.components.get(document.getElementById('modal-lokx1olb9q'));
 
         const token = await messaging.getToken();
         if (token) {
             sendTokenToServer({identifier, description, token});
+            modal.hide();
             return token;
         } else {
             await RequestPermission();
@@ -73,9 +76,8 @@ async function RequestPermission() {
 
 async function sendTokenToServer(subscription) {
     if (!isTokenSentToServer()) {
-        const result = await firestore.collection('tokens').add(subscription);
-        console.log(result);
-        setTokenSentToServer(true);
+        const result = await firestore.collection('tokens').add(subscription);        
+        setTokenSentToServer(true);        
     }
 }
 

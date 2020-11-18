@@ -22,7 +22,11 @@ var subscriptionItemTemplate =
         </td>
         <!-- expand icon td -->
         <td>
-            <button class="bx--btn bx--btn-small">Delete</button>
+            <button
+            class="bx--btn bx--btn--secondary bx--btn--field"
+            type="button">
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" style="will-change: transform;" xmlns="http://www.w3.org/2000/svg" class="bx--btn__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M9 7L9 3 7 3 7 7 3 7 3 9 7 9 7 13 9 13 9 9 13 9 13 7z"></path></svg>
+            </button>        
         </td>
     
     </tr>
