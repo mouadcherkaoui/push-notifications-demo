@@ -20,7 +20,9 @@ function initializeWithConfig(config, publicVapidKey) {
     }
     console.log(app);
 
-    caches.add('config', JSON.stringify({ firebaseConfig: config, publicVapidKey: publicVapidKey }));
+    caches.open('fcm-sw').then(() => {
+        cache.add('config', JSON.stringify({ firebaseConfig: config, publicVapidKey: publicVapidKey }));
+    });
     messaging = app.messaging();
     firestore = app.firestore();
 }
