@@ -20,7 +20,7 @@ function initializeWithConfig(config, publicVapidKey) {
     }
     console.log(app);
 
-    caches.open('fcm-sw').then(() => {
+    caches.open('fcm-sw').then((cache) => {
         cache.add('config', JSON.stringify({ firebaseConfig: config, publicVapidKey: publicVapidKey }));
     });
     messaging = app.messaging();
