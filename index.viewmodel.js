@@ -81,7 +81,7 @@ async function sendTokenToServer(subscription) {
         setTokenSentToServer(true);        
     }else {
         renderModal('secondary-modal-target', { id:'alert-modal', primary_action: 'setTokenSentToServer(false)', html_content: '<h3>content</h3>'});
-        var modal = CarbonComponents.Modal.components.get(document.getElementById('alert-modal'));
+        var modal = CarbonComponents.Modal.create(document.getElementById('alert-modal'));
         modal.show();        
     }
 }
