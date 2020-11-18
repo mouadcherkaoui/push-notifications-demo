@@ -78,6 +78,9 @@ async function sendTokenToServer(subscription) {
         var modal = CarbonComponents.Modal.components.get(document.getElementById('modal-lokx1olb9q'));
         modal.hide();    
         setTokenSentToServer(true);        
+    }else {
+        renderModal('secondary-modal-target', { primary_action: 'setTokenSentToServer(false)', html_content: '<h3>content</h3>'});
+        //CarbonComponents.Modal.components(document.getElementById(''))
     }
 }
 

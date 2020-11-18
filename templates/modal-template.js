@@ -34,10 +34,10 @@ aria-labelledby="modal-lokx1olb9q-label" aria-describedby="modal-lokx1olb9q-head
 <span tabindex="0"></span>
 </div> `;
 
-function renderModal() {
+function renderModal(target, data) {
     var modal = Handlebars.compile(modalTemplate);
-    var html = modal({ primary_action: "subscribeClient()"});
-    document.getElementById('modal-target').innerHTML = html;
+    var html = modal(data);
+    document.getElementById(target).innerHTML = html;
 }
 
 renderSubscriptionForm();
