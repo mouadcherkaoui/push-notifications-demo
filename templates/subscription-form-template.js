@@ -43,8 +43,8 @@ var subscriptionTemplate = `<!--
 </div>`
 
 function renderSubscriptionForm() {
+    renderModal({primary_action: 'subscribeClient()'});
     var subscriptionForm = Handlebars.compile(subscriptionTemplate);
     var html = subscriptionForm({});
-    document.getElementById('subscription-form-target').innerHTML = html;
+    document.getElementById('modal-content-target').innerHTML = html;
 }
-

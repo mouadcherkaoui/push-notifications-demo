@@ -15,7 +15,7 @@ aria-labelledby="modal-lokx1olb9q-label" aria-describedby="modal-lokx1olb9q-head
     </div>
 
 
-    <div class="bx--modal-content" id="subscription-form-target">
+    <div class="bx--modal-content" id="modal-content-target">
         <!--
           Copyright IBM Corp. 2016, 2018
         
@@ -27,7 +27,7 @@ aria-labelledby="modal-lokx1olb9q-label" aria-describedby="modal-lokx1olb9q-head
 
     <div class="bx--modal-footer">
         <button class="bx--btn bx--btn--secondary" type="button" data-modal-close>Secondary button</button>
-        <button class="bx--btn bx--btn--primary" type="button" data-modal-primary-focus onclick="eval({{primary_action}})">Primary button</button>
+        <button class="bx--btn bx--btn--primary" type="button" data-modal-primary-focus onclick="eval('{{primary_action}}')">Primary button</button>
     </div>
 </div>
 <!-- Note: focusable span allows for focus wrap feature within Modals -->
@@ -36,9 +36,8 @@ aria-labelledby="modal-lokx1olb9q-label" aria-describedby="modal-lokx1olb9q-head
 
 function renderModal() {
     var modal = Handlebars.compile(modalTemplate);
-    var html = modal({ primary_action: "()=> subscribeClient()"});
+    var html = modal({ primary_action: "subscribeClient()"});
     document.getElementById('modal-target').innerHTML = html;
 }
 
-renderModal();
 renderSubscriptionForm();
