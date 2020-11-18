@@ -4,7 +4,7 @@ var subscriptionItemTemplate =
         <!-- expand icon td -->
         <td>
             <!-- truncated new markup -->
-            {{id}}
+            {{identifier}}
         </td>
         <!-- expand icon td -->
         <td>
@@ -18,7 +18,7 @@ var subscriptionItemTemplate =
         <!-- expand icon td -->
         <td>
             <!-- truncated new markup -->
-            description
+            {{description}}
         </td>
         <!-- expand icon td -->
         <td>
