@@ -14,7 +14,7 @@ var firebaseConfig = {
 
 function initializeWithConfig(config, publicVapidKey) {
     firebase.initializeApp(config, 'push-notifications-demo');
-    const messaging = firebase.messaging();
+    const messaging = firebase.app('push-notifications-demo').messaging();
     
     messaging.usePublicVapidKey(publicVapidKey);
     messaging.onBackgroundMessage(function (payload) {
