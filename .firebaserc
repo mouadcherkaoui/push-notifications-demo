@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "socialize-push": {
+      "hosting": {
+        "push-notifications-demo": [
+          "socialize-push"
+        ]
+      }
+    }
+  }
+}
