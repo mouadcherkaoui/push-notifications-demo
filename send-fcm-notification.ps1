@@ -1,20 +1,39 @@
 
-$headers=New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+function Send-FcmPushNotification {
+    param (
+        [Parameter(Mandatory)][string] $AutToken,
+        [Parameter()][string] $NotificationData,
+        [Parameter()][string] $Title,
+        [Parameter()][string] $Url,
+        [Parameter(Mandatory)][string] $Message,
+        [Parameter(Mandatory)][string] $To
+    )
+    $headers=New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 
-$headers.Add('Content-Type', 'application/json')
-$headers.Add('Authorization', 'key=AAAAWeQ09i0:APA91bGFCjMvlMlIXRGkqFyKb_of6jQDMQjyo9GbfwtrhG3vtZyYBZLZSG5TYZddTIuqLX_ziCT-_vMsWnGCfQhNYWPcawsziPN0ozZsWLujb9j4caV8nLDUHcf_IjnY2ml61qkH2H09')
-
-$data= @"
- { 
-    "data": {
-        "title": "from powershell test data", 
-        "body":"body",
-        "url": "https://github.com/mouadcherkaoui/push-notifications-demo"
-        "onClick": "()=>{alert('test');}"
-    }, 
-    "to":"dmx7vwuFpW-ilFnsqGTV5j:APA91bG4YFTQOPW0uNwXCDF98Y91scD6oTatQbep_h_QQmwed94XQHQrqvhu_vJdkGMS7u52QzXbEQADXZxrKmuY-TSu8sjinbhllIKt6ufgAVF7lW1H7zFBRJCQNwPXzF4zSdIyhsFu"
-}
+    $headers.Add("Content-Type", "application/json")
+    $headers.Add("Authorization", "key=$Authtoken")
+    
+    $data = @"
+    {
+       "data": {
+           "title": "$Title", 
+           "body": "$Message",
+           "url": "$Url"
+           "onClick": "()=>{alert('test');}"
+       }, 
+       "to": "$To"
+   }
 "@
 
+    Invoke-RestMethod -Method Post -Uri "https://fcm.googleapis.com/fcm/send" -Headers $headers -Body $data -SkipHeaderValidation
+    
+}
 
-Invoke-RestMethod -Method Post -Uri 'https://fcm.googleapis.com/fcm/send' -Headers $headers -Body $data
+$authToken = "********************"
+
+
+$to = "*******************"
+$title = "Message from Powershell"
+$message = "new message sent from powershell script"
+$url = "https://github.com/mouadcherkaoui/push-notifications-demo"
+Send-FcmPushNotification -AutToken $authToken -To $to -Title $title -Message $message -Url $url 

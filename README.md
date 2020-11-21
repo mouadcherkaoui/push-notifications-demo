@@ -1,4 +1,5 @@
 # push-notifications-demo
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d5e047df-0b7b-4180-b454-0b74337b663b/deploy-status)](https://app.netlify.com/sites/frosty-feynman-166a70/deploys)
 
 ## Introduction
 

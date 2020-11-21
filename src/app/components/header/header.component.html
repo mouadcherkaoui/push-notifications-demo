@@ -1,0 +1,24 @@
+<ibm-header name="[Platform]">
+	<ibm-header-navigation>
+		<ng-container *ngFor="let item of items">
+			<ibm-header-item *ngIf="item.subItems == undefined" routerLink="{{item.action}}">{{item.title}}</ibm-header-item>
+			<ibm-header-menu *ngIf="item.subItems != undefined" title="{{item.title}}">
+				<ibm-header-item *ngFor="let subitem of item.subItems" routerLink="{{subitem.action}}">{{subitem.title}}</ibm-header-item>
+			</ibm-header-menu>		
+		</ng-container>
+		<ibm-header-item routerLink="docs">Docs</ibm-header-item>
+		<ibm-header-item routerLink="support">Support</ibm-header-item>
+
+	</ibm-header-navigation>
+	<ibm-header-global>
+		<ibm-header-action title="action">
+			<svg ibmIconNotification20></svg>
+		</ibm-header-action>
+		<ibm-header-action title="action">
+			<svg ibmIconUserAvatar20></svg>
+		</ibm-header-action>
+		<ibm-header-action title="action">
+			<svg ibmIconAppSwitcher20></svg>
+		</ibm-header-action>
+	</ibm-header-global>
+</ibm-header>
